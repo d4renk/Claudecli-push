@@ -75,6 +75,9 @@ export CLAUDE_NOTIFY_TITLE_PREFIX="Claude Code"
 
 # 是否启用一言（随机句子），默认关闭
 export HITOKOTO=false
+
+# Debug 模式（启用后记录详细日志）
+export CLAUDE_NOTIFY_DEBUG=false
 ```
 
 ### 支持的推送服务

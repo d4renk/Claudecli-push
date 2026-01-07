@@ -30,6 +30,7 @@ const STATE_DIR = path.resolve(
     path.join(process.env.HOME, '.claude', 'claude-notify-state')
 );
 const TITLE_PREFIX = process.env.CLAUDE_NOTIFY_TITLE_PREFIX || 'Claude Code';
+const DEBUG_MODE = process.env.CLAUDE_NOTIFY_DEBUG === 'true' || process.env.CLAUDE_NOTIFY_DEBUG === '1';
 const LOG_FILE = path.join(STATE_DIR, 'hook.log');
 
 // 确保状态目录存在
@@ -46,6 +47,11 @@ function formatShanghaiTime(date = new Date()) {
 }
 
 function log(message) {
+  // 仅在 debug 模式下记录日志
+  if (!DEBUG_MODE) {
+    return;
+  }
+
   const timestamp = formatShanghaiTime();
   const logMessage = `[${timestamp}] ${message}\n`;
   try {
@@ -56,6 +62,11 @@ function log(message) {
 }
 
 async function withNotifyLogs(fn) {
+  // 仅在 debug 模式下捕获日志
+  if (!DEBUG_MODE) {
+    return await fn();
+  }
+
   const originalLog = console.log;
   const originalError = console.error;
   console.log = (...args) => {

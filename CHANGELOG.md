@@ -8,6 +8,12 @@
   - 环境变量前缀：`CLAUDECLI_` → `CLAUDE_NOTIFY_`
   - 状态目录：`claudecli-hook-state` → `claude-notify-state`
   - 主文件：`claudecli_hook_push.js` → `claude_notify_hook.js`
+- **移除 .env 文件支持**：仅从环境变量读取配置
+
+### ✨ 新功能
+- **Debug 模式开关**：通过 `CLAUDE_NOTIFY_DEBUG` 控制日志记录
+  - 默认关闭，减少磁盘 I/O
+  - 启用后记录详细日志到 `~/.claude/claude-notify-state/hook.log`
 
 ### 🔒 安全更新
 - **依赖升级**：nodemailer 6.9.0 → 7.0.12
