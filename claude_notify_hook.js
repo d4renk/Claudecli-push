@@ -408,13 +408,13 @@ async function handleNotification(payload) {
 
   // 构建通知内容
   const title = `${TITLE_PREFIX} 🔔 需要确认`;
-  const content = `📋 **消息**: ${message}
+  const content = `📋 消息: ${message}
 
-⏱️ **已耗时**: ${formatDuration(elapsed)}
+⏱️ 已耗时: ${formatDuration(elapsed)}
 
-💡 **提示**: ${truncateText(state.prompt, 100)}
+💡 提示: ${truncateText(state.prompt, 100)}
 
-📁 **目录**: ${state.cwd}
+📁 目录: ${state.cwd}
 `;
 
   const notifyResult = await withNotifyLogs(() => sendNotify(title, content));
@@ -477,13 +477,13 @@ async function handleStop(payload) {
 
   // 构建通知内容
   const title = `${TITLE_PREFIX} ${emoji} 任务${status}`;
-  const content = `⏱️ **总耗时**: ${formatDuration(elapsed)}
+  const content = `⏱️ 总耗时: ${formatDuration(elapsed)}
 
-💡 **任务**: ${truncateText(state.prompt, 100)}
+💡 任务: ${truncateText(state.prompt, 100)}
 
-📁 **目录**: ${state.cwd}
+📁 目录: ${state.cwd}
 
-🕐 **完成时间**: ${formatShanghaiTime()}
+🕐 完成时间: ${formatShanghaiTime()}
 `;
 
   const notifyResult = await withNotifyLogs(() => sendNotify(title, content));
@@ -523,17 +523,17 @@ async function handlePreCompact(payload) {
 
   // 构建通知内容
   const title = `${TITLE_PREFIX} 📦 上下文压缩`;
-  const content = `⚠️ **警告**: 任务进入长时间运行状态
+  const content = `⚠️ 警告: 任务进入长时间运行状态
 
-⏱️ **已耗时**: ${formatDuration(elapsed)}
+⏱️ 已耗时: ${formatDuration(elapsed)}
 
-🔄 **压缩方式**: ${triggerText}
+🔄 压缩方式: ${triggerText}
 
-💡 **任务**: ${truncateText(state.prompt, 100)}
+💡 任务: ${truncateText(state.prompt, 100)}
 
-📁 **目录**: ${state.cwd}
+📁 目录: ${state.cwd}
 
-💬 **说明**: Claude 正在压缩对话上下文以继续工作
+💬 说明: Claude 正在压缩对话上下文以继续工作
 `;
 
   const notifyResult = await withNotifyLogs(() => sendNotify(title, content));

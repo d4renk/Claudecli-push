@@ -48,14 +48,24 @@ else
     exit 1
 fi
 
+# 安装 Node.js 依赖
+echo -e "${YELLOW}[3/5]${NC} 安装 Node.js 依赖..."
+cd "$SCRIPT_DIR"
+if npm install --production; then
+    echo -e "${GREEN}✓${NC} 依赖安装完成"
+else
+    echo -e "${RED}✗${NC} 依赖安装失败，请手动运行: npm install"
+    exit 1
+fi
+
 # 设置执行权限
-echo -e "${YELLOW}[3/4]${NC} 设置文件权限..."
+echo -e "${YELLOW}[4/5]${NC} 设置文件权限..."
 chmod +x "$SCRIPT_DIR/claude_notify_hook.js"
 chmod +x "$SCRIPT_DIR/send-notify.js"
 echo -e "${GREEN}✓${NC} 权限设置完成"
 
 # 自动配置 Hook
-echo -e "${YELLOW}[4/4]${NC} 配置 Claude Code Hooks..."
+echo -e "${YELLOW}[5/5]${NC} 配置 Claude Code Hooks..."
 
 # 默认安装到用户配置
 CLAUDE_SETTINGS="$HOME/.claude/settings.json"
